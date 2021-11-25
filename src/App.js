@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useJokeProvider } from "./Hooks/jokes";
 
 function App() {
+  const { joke, fetchJoke } = useJokeProvider();
+
+  const generateButtonClick = (e) => {
+    e.preventDefault();
+    fetchJoke();
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>{joke?.setup}</p>
+
+      <button onClick={generateButtonClick}>Generate</button>
     </div>
   );
 }
